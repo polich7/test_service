@@ -45,10 +45,9 @@ def registration():
         json_params = json.loads(getData) 
         
         #напишите прогноз и верните его в ответе в параметре 'prediction'
-
-
-
-        
+        category = model.predict(vec.transform([json_params['user_message']]).toarray()).tolist()
+        resp['category'] = category
+            
     except Exception as e: 
         print(e)
         resp['message'] = e
